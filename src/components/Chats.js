@@ -43,16 +43,16 @@ const Chats = () => {
                 setLoading(false);
             })
             .catch(() => {
-                let formdata = new FormData();
-                formdata.append('email', user.email);
-                formdata.append('username', user.email);
-                formdata.append('secret', user.uid);
+                let formData = new FormData();
+                formData.append('email', user.email);
+                formData.append('username', user.email);
+                formData.append('secret', user.uid);
                 console.log(process.env);
                 getFile(user.photoURL).then((avatar) => {
-                    formdata.append('avatar', avatar, avatar.name);
+                    formData.append('avatar', avatar, avatar.name);
 
                     axios
-                        .post('https://api.chatengine.io/users', formdata, {
+                        .post('https://api.chatengine.io/users', formData, {
                             headers: { 'private-key': process.env.REACT_APP_CHAT_ENGINE_KEY },
                         })
                         .then(() => setLoading(false))
@@ -68,7 +68,7 @@ const Chats = () => {
             <div className="nav-bar">
                 <div className="logo-tab">MyChat</div>
                 <div onClick={handleLogout} style={{ marginRight: '150px' }} className="logout-tab">
-                    Logout
+                    Sign Out
                 </div>
             </div>
 
